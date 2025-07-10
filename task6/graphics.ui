@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Graphics</class>
+ <widget class="QMainWindow" name="Graphics">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>729</width>
+    <height>572</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Graphics</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QGraphicsView" name="graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>710</width>
+      <height>510</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>729</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Выбрать фигуру</string>
+    </property>
+    <addaction name="actionRectangle"/>
+    <addaction name="actionEllipse"/>
+    <addaction name="actionRhomb"/>
+    <addaction name="actionTriangle_equilateral"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>Установить цвет границы</string>
+    </property>
+    <addaction name="actionset_default_color_black"/>
+    <addaction name="actionuser_choice"/>
+   </widget>
+   <widget class="QMenu" name="menuSet_fill_color">
+    <property name="title">
+     <string>Установить цвет заливки</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="action_0"/>
+    <addaction name="action_2"/>
+   </widget>
+   <widget class="QMenu" name="menuSave_current_results_into_bin_file">
+    <property name="title">
+     <string>Файлы</string>
+    </property>
+    <addaction name="action_3"/>
+    <addaction name="actionSave_current_result_to_bin_file"/>
+    <addaction name="actionRestore_figures_from_bin_file"/>
+    <addaction name="action"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string> </string>
+    </property>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+   <addaction name="menuSet_fill_color"/>
+   <addaction name="menuSave_current_results_into_bin_file"/>
+   <addaction name="menu_3"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionRectangle">
+   <property name="text">
+    <string>Прямоугольник</string>
+   </property>
+  </action>
+  <action name="actionEllipse">
+   <property name="text">
+    <string>Эллипс</string>
+   </property>
+  </action>
+  <action name="actionRhomb">
+   <property name="text">
+    <string>Ромб</string>
+   </property>
+  </action>
+  <action name="actionTriangle_equilateral">
+   <property name="text">
+    <string>Треугольник (равносторонний)</string>
+   </property>
+  </action>
+  <action name="actionSave_current_result_to_bin_file">
+   <property name="text">
+    <string>Сохранить текущий результат в бинарный файл</string>
+   </property>
+  </action>
+  <action name="actionRestore_figures_from_bin_file">
+   <property name="text">
+    <string>Восстановить фигуры из бинарного файла</string>
+   </property>
+  </action>
+  <action name="actionset_default_color_black">
+   <property name="text">
+    <string>По умолчанию (чёрный)</string>
+   </property>
+  </action>
+  <action name="actionuser_choice">
+   <property name="text">
+    <string>Пользовательский выбор</string>
+   </property>
+  </action>
+  <action name="action_0">
+   <property name="text">
+    <string>По умолчанию (белый)</string>
+   </property>
+  </action>
+  <action name="action_2">
+   <property name="text">
+    <string>Пользовательский выбор</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="text">
+    <string>Закрыть приложение</string>
+   </property>
+  </action>
+  <action name="action_3">
+   <property name="text">
+    <string>Начать работу заново (очистить окно)</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
