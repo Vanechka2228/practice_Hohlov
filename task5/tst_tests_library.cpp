@@ -96,10 +96,6 @@ void tests_library::testBook_streamOperator()
     QCOMPARE(s.trimmed(), QStringLiteral("X, Y, 2005 год"));
 }
 
-//==============================================================================
-//                          Publication
-//==============================================================================
-
 void tests_library::testPub_defaultConstructor()
 {
     Publication p;
