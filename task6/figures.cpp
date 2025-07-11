@@ -30,6 +30,13 @@ QColor Shape::borderColor() const {return _borderColor;}
 //
 Rectangle::Rectangle(const QPointF &p1, const QPointF &p2, const QColor &fill, const QColor &border):Shape(p1,p2,fill,border){}
 
+QPainterPath Rectangle::painterPath() const
+{
+    QPainterPath path;
+    path.addRect(borderRect());
+    return path;
+}
+
 void Rectangle::draw(QPainter& painter) const
 {
     painter.setBrush(_fillColor);
@@ -72,6 +79,13 @@ void Ellipse::draw(QPainter& painter) const
     painter.drawEllipse(borderRect());
 }
 
+QPainterPath Ellipse::painterPath() const
+{
+    QPainterPath path;
+    path.addEllipse(borderRect());
+    return path;
+}
+
 double Ellipse::area() const
 {
     return M_PI*fabs((v1.x()-v2.x())*(v1.y()-v2.y()))/4;
@@ -108,6 +122,23 @@ void Rhomb::draw(QPainter& painter) const
     painter.setBrush(_fillColor);
     painter.setPen(_borderColor);
     painter.drawPath(painterPath());
+}
+
+QPainterPath Rhomb::painterPath() const
+{
+    QRectF r = borderRect();
+    QPointF center = r.center();
+    QPointF top (center.x(), r.top());
+    QPointF right (r.right(), center.y());
+    QPointF bottom (center.x(), r.bottom());
+    QPointF left (r.left(),center.y());
+    QPainterPath path;
+    path.moveTo(top);
+    path.lineTo(right);
+    path.lineTo(bottom);
+    path.lineTo(left);
+    path.closeSubpath();
+    return path;
 }
 
 double Rhomb::area() const
@@ -166,6 +197,18 @@ void Triangle::draw(QPainter& painter) const
     painter.drawPolygon(triang);
 }
 
+QPainterPath Triangle::painterPath() const
+{
+    QPointF a, b, c;
+    vertices(a, b, c);
+    QPainterPath path;
+    path.moveTo(a);
+    path.lineTo(b);
+    path.lineTo(c);
+    path.closeSubpath();
+    return path;
+}
+
 double Triangle::area() const
 {
     double s = borderRect().width();
@@ -192,3 +235,4 @@ int Triangle::shapeType() const
 {
     return 4;
 }
+
