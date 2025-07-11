@@ -18,7 +18,9 @@ protected:
 public:
     Shape(const QPointF& p1,const QPointF& p2,const QColor& fill = Qt::white, const QColor& border = Qt::black);
     virtual ~Shape()=default;
+
     virtual void draw(QPainter& painter) const=0;
+    virtual QPainterPath painterPath() const=0;
 
     virtual double area() const=0;
     virtual double perimeter() const=0;
@@ -43,7 +45,9 @@ class Rectangle: public Shape
 public:
     Rectangle(const QPointF& p1,const QPointF& p2,const QColor& fill = Qt::white, const QColor& border = Qt::black);
     ~Rectangle()=default;
+
     void draw(QPainter& painter) const override;
+    QPainterPath painterPath() const override;
 
     double area() const override;
     double perimeter() const override;
@@ -59,7 +63,9 @@ class Ellipse: public Shape
 public:
     Ellipse(const QPointF& p1,const QPointF& p2,const QColor& fill = Qt::white, const QColor& border = Qt::black);
     ~Ellipse()=default;
+
     void draw(QPainter& painter) const override;
+    QPainterPath painterPath() const override;
 
     double area() const override;
     double perimeter() const override;
@@ -70,12 +76,14 @@ public:
     int shapeType() const override;
 };
 
-class Rhomb : public Shape
+class Rhomb: public Shape
 {
 public:
     Rhomb(const QPointF& p1,const QPointF& p2,const QColor& fill = Qt::white, const QColor& border = Qt::black);
     ~Rhomb()=default;
+
     void draw(QPainter& painter) const override;
+    QPainterPath painterPath() const override;
 
     double area() const override;
     double perimeter() const override;
@@ -97,6 +105,7 @@ public:
     ~Triangle()=default;
 
     void draw(QPainter& painter) const override;
+    QPainterPath painterPath() const override;
 
     double area() const override;
     double perimeter() const override;
