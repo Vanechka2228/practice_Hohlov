@@ -1,5 +1,5 @@
-QT       += core testlib
-CONFIG   += console testcase
+QT       += testlib
+QT -= gui
 TEMPLATE = app
 TARGET   = Tests_Library
 
