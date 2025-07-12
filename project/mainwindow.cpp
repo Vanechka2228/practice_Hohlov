@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     setWindowTitle("Лабиринт");
     m_field = new MazeField(50,this);
+    ui->graphicsView->setBackgroundBrush(QBrush(QColor(245, 240, 230, 180)));
     ui->graphicsView->setScene(m_field);
     ui->graphicsView->installEventFilter(this);
     makeMaze();
