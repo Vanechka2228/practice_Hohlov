@@ -17,8 +17,8 @@ struct Cell
 class Maze
 {
 private:
-    int width;
     int height;
+    int width;
     QPair<int,int> entrance;
     QPair<int,int> exit;
     QVector<QVector<Cell>> grid;
