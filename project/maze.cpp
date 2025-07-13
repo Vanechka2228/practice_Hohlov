@@ -5,7 +5,7 @@
 #include <QList>
 #include <QPair>
 
-Maze::Maze(int rows, int cols):width(rows),height(cols)
+Maze::Maze(int rows, int cols):height(rows),width(cols)
 {
     grid.resize(height);
     for (int r = 0; r < height; ++r)
