@@ -31,10 +31,13 @@ private slots:
 
     void on_action_7_triggered();
 
+protected:
+
     void keyPressEvent(QKeyEvent *event) override;
 
-private:
     bool eventFilter(QObject *watched, QEvent *event) override;
+
+private:
     void movePlayer(int dr, int dc);
     void makeMaze();
     Ui::MainWindow *ui;
