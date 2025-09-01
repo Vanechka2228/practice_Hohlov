@@ -11,9 +11,10 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     setWindowTitle("Лабиринт");
-    m_field = new MazeField(50,this);
+    m_field = new MazeField(65,this);
     ui->graphicsView->setBackgroundBrush(QBrush(QColor(245, 240, 230, 180)));
     ui->graphicsView->setScene(m_field);
+    ui->graphicsView->setAlignment(Qt::AlignCenter); //ДОРАБОТКА добавлено центрирование лабиринта на экране
     ui->graphicsView->installEventFilter(this);
     makeMaze();
 }
@@ -65,7 +66,7 @@ void MainWindow::movePlayer(int dr, int dc)
         return;
     int newRow = m_playerRow + dr;
     int newCol = m_playerCol + dc;
-    if (newRow < 0 || newCol < 0 ||newRow >= height ||newCol >= width) // проверка границ
+    if (newRow < 0 || newCol < 0 ||newRow >= height ||newCol >= width) //проверка границ
         return;
     const Cell &current = m_model->m_Grid()[m_playerRow][m_playerCol];
     if ((dr == -1 && current.topWall) || (dr == +1 && current.bottomWall) || (dc == -1 && current.leftWall) || (dc == +1 && current.rightWall)) // проверка на наличие стенки
@@ -74,7 +75,8 @@ void MainWindow::movePlayer(int dr, int dc)
     m_playerCol = newCol;
     m_field->setPlayerPosition(m_playerRow, m_playerCol, m_playerColor);
     if (m_playerRow == m_model->m_Exit().first && m_playerCol == m_model->m_Exit().second)
-        QMessageBox::information(nullptr,"Поздарвляем!","Лабиринт пройден");
+        if (QMessageBox::information(nullptr,"Поздарвляем!","Лабиринт пройден",QMessageBox::Ok)==QMessageBox::Ok) //ДОРАБОТКА автоматическое создание лабиринта прежнего размера после прохождения текущего
+    makeMaze();
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
@@ -100,13 +102,15 @@ void MainWindow::on_action_triggered()
     Dialog dlg(height, width, this);
     if (dlg.exec() == QDialog::Accepted)
     {
-        if (height<20 && width<20)
-            m_field->setCellSize(50);
+        double free_area;
+        if (std::max(height,width)<21)
+            free_area = 520.0;
+        else if (std::max(height,width)<36)
+            free_area = 575.0;
         else
-            if (height>=20 && height<35 && width>=20 && width<35)
-            m_field->setCellSize(25);
-        else
-            m_field->setCellSize(15);
+            free_area = 630.0;
+        double size = free_area / std::max(height,width);
+        m_field->setCellSize(size);
         makeMaze();
     }
 }
@@ -116,7 +120,6 @@ void MainWindow::on_action_2_triggered()
 {
     makeMaze();
 }
-
 
 void MainWindow::on_action_4_triggered()
 {
